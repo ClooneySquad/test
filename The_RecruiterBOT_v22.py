@@ -11,7 +11,7 @@ def generate_markup(buttons):
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, f"Привет, {message.from_user.first_name}! Я Ваш бот - рекрутёр. Моя задача - помощь желающим попасть в ряды отряда 'Клуни',для дальнейшего прохождения службы в зоне СВО. Выберите, чем я могу Вам помочь?")
-    with open('photo_clooney.jpg', 'rb') as photo:
+    with open('https://raw.githubusercontent.com/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/photo_clooney.jpg', 'rb') as photo: #https://raw.githubusercontent.com/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/image.jpg
         bot.send_photo(message.chat.id, photo)
     markup = generate_markup(['Про отряд', 'Вакансии', 'Контакты'])
     bot.send_message(message.chat.id, "Выберите одну из следующих опций:", reply_markup=markup)
