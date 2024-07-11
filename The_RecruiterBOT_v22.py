@@ -1,18 +1,73 @@
 import telebot
+from telebot import types
+import requests
+from io import BytesIO
 
-bot = telebot.TeleBot('7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY')
+bot = telebot.TeleBot("7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY")
 
-@bot.message_handler(commands=['start'])
+def generate_markup(buttons):
+    markup = types.ReplyKeyboardMarkup(row_width=1)
+    markup.add(*(types.KeyboardButton(btn_text) for btn_text in buttons))
+    return markup
+
+@bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    markup = telebot.types.ReplyKeyboardMarkup(row_width=1)
-    itembtn = telebot.types.KeyboardButton('Поздароваться')
-    markup.add(itembtn)
-    bot.send_message(message.chat.id, "Привет! Нажми на кнопку:", reply_markup=markup)
+    bot.reply_to(message, f"Привет, {message.from_user.first_name}! Я Ваш бот - рекрутёр. Моя задача - помощь желающим попасть в ряды отряда 'Клуни',для дальнейшего прохождения службы в зоне СВО. Выберите, чем я могу Вам помочь?")
+    response = requests.get('https://github.com/ClooneySquad/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/photo_clooney.jpg')
+    photo = BytesIO(response.content)
+    bot.send_photo(message.chat.id, photo)
+    markup = generate_markup(['Про отряд', 'Вакансии', 'Контакты'])
+    bot.send_message(message.chat.id, "Выберите одну из следующих опций:", reply_markup=markup)
+
+callback_texts = {
+    "Про отряд": """Легендарный отряд «КЛУНИ» (ранее отряд «ЛЕВ») объявляет набор бойцов для участия в специальной военной операции. Отряд носит имя своего первого командира с позывным «КЛУНИ», который погиб в марте 2022 г., защищая свою родную землю. Отряд был создан 28 октября 2021 года и в настоящий момент выполняет боевые задачи совместно с Вооруженными Силами Российской Федерации. 
+С начала СВО личный состав отряда удостоен следующими государственными наградами: 
+1.	Герой ДНР – 1
+2.	Орден Мужества – 54
+3.	Медаль за Отвагу – 82
+
+Кандидатам на службу предлагается денежное содержание от 220 000 руб. в месяц, за результативную работу существуют стимулирующие финансовые вознаграждения, а также бесплатное питание, обеспечение военной формой и средствами защиты (экипировкой), проезд к месту службы оплачивается за счёт отряда (при сохранении проездного билета). За ранение предусмотрены социальные выплаты до 3-х миллионов руб. 
+
+В отряде «КЛУНИ» для специалистов предусмотрены служебные контракты продолжительностью 6 месяцев. После окончания 1-го контракта предусмотрен отпуск продолжительностью до 15 суток. При заключении 2-го и последующего контракта предусмотрена выдача удостоверения Ветерана Боевых Действий. 
+
+Кандидатам на службу при себе иметь паспорт и не иметь хронических заболеваний, в том числе СПИД, ВИЧ, Гепатит, Туберкулёз. 
+На службу также принимаются иностранные граждане. Для иностранцев существует возможность оформить гражданство Российской Федерации.
+""",
+    "Вакансии": "Текст для 'Вакансии'",
+    "Контакты": """Отдел кадров: +79495660687 (только для сообщений)""",
+    "Оператор БпЛА": """В отряд «Клуни» требуются операторы БпЛА (коммерческие дроны, FPV-дроны, дроны экстра-класса), с опытом работы (или без, обучим с ноля). 
+Если ты готов изучать новые технологии и быть богом современной войны - пиши на номер в разделе "Контакты".
+""",
+    "Водитель": """В отряд «Клуни» требуются водители категории «В,С» с опытом вождения, обслуживания и ремонта автомобилей марки «УАЗ» и «КАМАЗ». 
+Если ты готов ценить и заботиться о вверенном тебе автомобиле, как о своём собственном, то отряд «Клуни» с радостью примет в свои боевые ряды. В обязанности водителя входит: бережно эксплуатировать автомобиль, выполняя боевые задачи по транспортировке военной техники и вооружения, а также выполнение задач по перевозке своих боевых товарищей.
+""",
+    "Штурмовик": """В отряд «Клуни» требуются специалисты по категории «Штурмовик». Если судьба России для тебя имеет значение, и ты готов встать в строй героев-защитников своей Родины, то отряд «Клуни» с радостью примет тебя в свои боевые ряды. 
+Если ты не имеешь опыта боевых действий, то наши инструктора в процессе обучения поделятся своими знаниями с каждым желающим и передадут все свои навыки, которыми обладают сами. 
+Каждый боец отряд «Клуни» с оружием в руках отстаивает право наших предков на землю Донбасса и Малороссии. Это наша земля и м ы готовы за неё бороться.
+""",
+    "Вернуться в главное меню": "Текст для 'Вернуться в главное меню'"
+}
+
+callback_images = {
+    "Оператор БпЛА": "https://github.com/ClooneySquad/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/drone_pilot.jpg",
+    "Водитель": "https://github.com/ClooneySquad/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/driver.jpg",
+    "Штурмовик": "https://github.com/ClooneySquad/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/asshole.jpg"
+}
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    if message.text == 'Поздароваться':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
-        bot.send_photo(message.chat.id, photo_url)
+    if message.text == "Вакансии":
+        markup = generate_markup(['Оператор БпЛА', 'Водитель', 'Штурмовик', 'Назад'])
+        bot.send_message(message.chat.id, "Выберите вакансию:", reply_markup=markup)
+    elif message.text in ["Оператор БпЛА", "Водитель", "Штурмовик"]:
+        response = requests.get(callback_images[message.text])
+        photo = BytesIO(response.content)
+        bot.send_photo(message.chat.id, photo)
+        bot.send_message(message.chat.id, callback_texts.get(message.text, "Извините, я не понял ваш запрос."))
+    elif message.text == "Назад":
+        markup = generate_markup(['Про отряд', 'Вакансии', 'Контакты'])
+        bot.send_message(message.chat.id, "Выберите одну из следующих опций:", reply_markup=markup)
+    else:
+        bot.send_message(message.chat.id, callback_texts.get(message.text, "Извините, я не понял ваш запрос."))
 
 bot.polling()
