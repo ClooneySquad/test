@@ -1,7 +1,6 @@
+
 import telebot
 from telebot import types
-import requests
-from io import BytesIO
 
 bot = telebot.TeleBot("7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY")
 
@@ -13,9 +12,8 @@ def generate_markup(buttons):
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, f"Привет, {message.from_user.first_name}! Я Ваш бот - рекрутёр. Моя задача - помощь желающим попасть в ряды отряда 'Клуни',для дальнейшего прохождения службы в зоне СВО. Выберите, чем я могу Вам помочь?")
-    response = requests.get('https://github.com/ClooneySquad/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/photo_clooney.jpg')
-    photo = BytesIO(response.content)
-    bot.send_photo(message.chat.id, photo)
+    with open('https://github.com/ClooneySquad/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/photo_clooney.jpg', 'rb') as photo:
+        bot.send_photo(message.chat.id, photo)
     markup = generate_markup(['Про отряд', 'Вакансии', 'Контакты'])
     bot.send_message(message.chat.id, "Выберите одну из следующих опций:", reply_markup=markup)
 
@@ -60,10 +58,9 @@ def echo_all(message):
         markup = generate_markup(['Оператор БпЛА', 'Водитель', 'Штурмовик', 'Назад'])
         bot.send_message(message.chat.id, "Выберите вакансию:", reply_markup=markup)
     elif message.text in ["Оператор БпЛА", "Водитель", "Штурмовик"]:
-        response = requests.get(callback_images[message.text])
-        photo = BytesIO(response.content)
-        bot.send_photo(message.chat.id, photo)
-        bot.send_message(message.chat.id, callback_texts.get(message.text, "Извините, я не понял ваш запрос."))
+        with open(callback_images[message.text], 'rb') as photo:
+            bot.send_photo(message.chat.id, photo)
+        bot.send_message(message.chat.id, callback_texts[message.text])
     elif message.text == "Назад":
         markup = generate_markup(['Про отряд', 'Вакансии', 'Контакты'])
         bot.send_message(message.chat.id, "Выберите одну из следующих опций:", reply_markup=markup)
@@ -71,3 +68,5 @@ def echo_all(message):
         bot.send_message(message.chat.id, callback_texts.get(message.text, "Извините, я не понял ваш запрос."))
 
 bot.polling()
+
+
