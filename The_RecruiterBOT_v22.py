@@ -13,7 +13,7 @@ def generate_markup(buttons):
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, f"Привет, {message.from_user.first_name}! Я Ваш бот - рекрутёр. Моя задача - помощь желающим попасть в ряды отряда 'Клуни',для дальнейшего прохождения службы в зоне СВО. Выберите, чем я могу Вам помочь?")
-    response = requests.get('https://github.com/ClooneySquad/test/tree/28c2d2ea05ea1794a4050db2b5c88d4f179ff66a/ScriptData/SkriptMedia/photo_clooney.jpg')
+    response = requests.get('photo_clooney.jpg')
     photo = BytesIO(response.content)
     bot.send_photo(message.chat.id, photo)
     markup = generate_markup(['Про отряд', 'Вакансии', 'Контакты'])
