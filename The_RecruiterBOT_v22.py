@@ -14,13 +14,13 @@ def send_welcome(message):
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     if message.text == 'Вакансия 1':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
+        photo_url = 'https://github.com/ClooneySquad/test/blob/main/test3.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
     elif message.text == 'Вакансия 2':
         photo_url = 'https://github.com/ClooneySquad/test/blob/main/testtesttest.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
     elif message.text == 'Вакансия 3':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
+        photo_url = 'https://github.com/ClooneySquad/test/blob/main/test2.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
 
 bot.polling()
