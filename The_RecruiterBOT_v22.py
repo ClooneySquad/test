@@ -42,7 +42,7 @@ def echo_all(message):
 На службу также принимаются иностранные граждане. Для иностранцев существует возможность оформить гражданство Российской Федерации.
 """) #
     elif message.text == 'Контакты':
-        bot.send_message(message.chat.id, """По всем вопросам: +79495660687 (только для сообщений), \n Наша 'Отчетная' группа в телеграмм: https://t.me/ClooneySquad""")
+        bot.send_message(message.chat.id, """По всем вопросам: @ClooneyRecruiter \n+79495660687 (только для сообщений), \nНаша 'Отчетная' группа в телеграмм: https://t.me/ClooneySquad""") #https://t.me/@ClooneyRecruiter
     elif message.text == 'Вакансии':
         vacancies_menu(message)
     elif message.text == 'Оператор дрона':
