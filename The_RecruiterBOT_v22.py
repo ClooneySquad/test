@@ -9,7 +9,7 @@ def main_menu(message):
     itembtn3 = telebot.types.KeyboardButton('Вакансии')
     markup.add(itembtn1, itembtn2, itembtn3)
     bot.send_message(message.chat.id, "Привет, {}! Я Ваш бот - рекрутёр. Моя задача - помощь желающим попасть в ряды отряда 'Клуни',для дальнейшего прохождения службы в зоне СВО. Выберите, чем я могу Вам помочь?".format(message.from_user.first_name), reply_markup=markup)
-    photo_url = 'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
+    photo_url = 'https://github.com/ClooneySquad/test/blob/1d7155ca09993fca84671531d491ac638e7e27bf/ScriptData/SkriptMedia/MainLogo.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
     bot.send_photo(message.chat.id, photo_url)
 
 def vacancies_menu(message):
@@ -27,7 +27,7 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    if message.text == 'Об Отряде':
+    if message.text == 'Про отряд':
         bot.send_message(message.chat.id, """Легендарный отряд «КЛУНИ» (ранее отряд «ЛЕВ») объявляет набор бойцов для участия в специальной военной операции. Отряд носит имя своего первого командира с позывным «КЛУНИ», который погиб в марте 2022 г., защищая свою родную землю. Отряд был создан 28 октября 2021 года и в настоящий момент выполняет боевые задачи совместно с Вооруженными Силами Российской Федерации. 
 С начала СВО личный состав отряда удостоен следующими государственными наградами: 
 1.	Герой ДНР – 1
@@ -42,24 +42,23 @@ def echo_all(message):
 На службу также принимаются иностранные граждане. Для иностранцев существует возможность оформить гражданство Российской Федерации.
 """) #
     elif message.text == 'Контакты':
-        bot.send_message(message.chat.id, """По всем вопросам: +79495660687 (только для сообщений), 
-                         Наша 'Отчетная' группа в телеграмм: https://t.me/ClooneySquad""")
+        bot.send_message(message.chat.id, """По всем вопросам: +79495660687 (только для сообщений), \n Наша 'Отчетная' группа в телеграмм: https://t.me/ClooneySquad""")
     elif message.text == 'Вакансии':
         vacancies_menu(message)
     elif message.text == 'Оператор дрона':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/2852c48b2be102ebf0b5ef57e5b6f63c418907b0/ScriptData/SkriptMedia/endTest.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/test3.jpg?raw=true'
+        photo_url = 'https://github.com/ClooneySquad/test/blob/1d7155ca09993fca84671531d491ac638e7e27bf/ScriptData/SkriptMedia/DronePilot.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/2852c48b2be102ebf0b5ef57e5b6f63c418907b0/ScriptData/SkriptMedia/endTest.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/test3.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
         bot.send_message(message.chat.id, """В отряд «Клуни» требуются операторы БпЛА (коммерческие дроны, FPV-дроны, дроны экстра-класса), с опытом работы (или без, обучим с ноля). 
 Если ты готов изучать новые технологии и быть главным оружием современной войны - пиши на номер в разделе "Контакты".
 """)
     elif message.text == 'Водитель':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/main/testtesttest.jpg?raw=true'
+        photo_url = 'https://github.com/ClooneySquad/test/blob/1d7155ca09993fca84671531d491ac638e7e27bf/ScriptData/SkriptMedia/Driver.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/testtesttest.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
         bot.send_message(message.chat.id, """В отряд «Клуни» требуются водители категории «В,С» с опытом вождения, обслуживания и ремонта автомобилей марки «УАЗ» и «КАМАЗ». 
 Если ты готов ценить и заботиться о вверенном тебе автомобиле, как о своём собственном, то отряд «Клуни» с радостью примет в свои боевые ряды. В обязанности водителя входит: бережно эксплуатировать автомобиль, выполняя боевые задачи по транспортировке военной техники и вооружения, а также выполнение задач по перевозке своих боевых товарищей.
 """)
     elif message.text == 'Штурмовик':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/main/test2.jpg?raw=true'
+        photo_url = 'https://github.com/ClooneySquad/test/blob/1d7155ca09993fca84671531d491ac638e7e27bf/ScriptData/SkriptMedia/Asshole.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/test2.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
         bot.send_message(message.chat.id, """В отряд «Клуни» требуются специалисты по категории «Штурмовик». Если судьба России для тебя имеет значение, и ты готов встать в строй героев-защитников своей Родины, то отряд «Клуни» с радостью примет тебя в свои боевые ряды. 
 Если ты не имеешь опыта боевых действий, то наши инструктора в процессе обучения поделятся своими знаниями с каждым желающим и передадут все свои навыки, которыми обладают сами. 
