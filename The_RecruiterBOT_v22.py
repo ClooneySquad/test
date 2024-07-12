@@ -17,7 +17,7 @@ def echo_all(message):
         photo_url = 'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
     elif message.text == 'Вакансия 2':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
+        photo_url = 'https://github.com/ClooneySquad/test/blob/main/driver.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
     elif message.text == 'Вакансия 3':
         photo_url = 'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
