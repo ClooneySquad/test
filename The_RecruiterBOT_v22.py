@@ -4,7 +4,7 @@ bot = telebot.TeleBot('7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY')
 
 def main_menu(message):
     markup = telebot.types.ReplyKeyboardMarkup(row_width=1)
-    itembtn1 = telebot.types.KeyboardButton("Об Отряде")
+    itembtn1 = telebot.types.KeyboardButton("Про отряд")
     itembtn2 = telebot.types.KeyboardButton('Контакты')
     itembtn3 = telebot.types.KeyboardButton('Вакансии')
     markup.add(itembtn1, itembtn2, itembtn3)
@@ -42,11 +42,12 @@ def echo_all(message):
 На службу также принимаются иностранные граждане. Для иностранцев существует возможность оформить гражданство Российской Федерации.
 """) #
     elif message.text == 'Контакты':
-        bot.send_message(message.chat.id, """Отдел кадров: +79495660687 (только для сообщений)""")
+        bot.send_message(message.chat.id, """По всем вопросам: +79495660687 (только для сообщений), 
+                         Наша 'Отчетная' группа в телеграмм: https://t.me/ClooneySquad""")
     elif message.text == 'Вакансии':
         vacancies_menu(message)
     elif message.text == 'Оператор дрона':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/main/test3.jpg?raw=true'
+        photo_url = 'https://github.com/ClooneySquad/test/blob/2852c48b2be102ebf0b5ef57e5b6f63c418907b0/ScriptData/SkriptMedia/endTest.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/test3.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
         bot.send_message(message.chat.id, """В отряд «Клуни» требуются операторы БпЛА (коммерческие дроны, FPV-дроны, дроны экстра-класса), с опытом работы (или без, обучим с ноля). 
 Если ты готов изучать новые технологии и быть главным оружием современной войны - пиши на номер в разделе "Контакты".
