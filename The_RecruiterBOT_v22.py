@@ -5,14 +5,22 @@ bot = telebot.TeleBot('7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY')
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     markup = telebot.types.ReplyKeyboardMarkup(row_width=1)
-    itembtn = telebot.types.KeyboardButton('Поздароваться')
-    markup.add(itembtn)
-    bot.send_message(message.chat.id, "Привет! Нажми на кнопку:", reply_markup=markup)
+    itembtn1 = telebot.types.KeyboardButton('Вакансия 1')
+    itembtn2 = telebot.types.KeyboardButton('Вакансия 2')
+    itembtn3 = telebot.types.KeyboardButton('Вакансия 3')
+    markup.add(itembtn1, itembtn2, itembtn3)
+    bot.send_message(message.chat.id, "Привет! Нажми на одну из кнопок:", reply_markup=markup)
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    if message.text == 'Поздароваться':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/main/photo_clooney.jpg?raw=true'
+    if message.text == 'Вакансия 1':
+        photo_url = 'https://github.com/ClooneySquad/test/blob/main/drone_pilot.jpg?raw=true'
+        bot.send_photo(message.chat.id, photo_url)
+    elif message.text == 'Вакансия 2':
+        photo_url = 'https://github.com/ClooneySquad/test/blob/main/driver.jpg?raw=true'
+        bot.send_photo(message.chat.id, photo_url)
+    elif message.text == 'Вакансия 3':
+        photo_url = 'https://github.com/ClooneySquad/test/blob/main/asshole.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
 
 bot.polling()
