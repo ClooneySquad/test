@@ -66,7 +66,7 @@ def echo_all(message):
 Каждый боец отряд «Клуни» с оружием в руках отстаивает право наших предков на землю Донбасса и Малороссии. Это наша земля и м ы готовы за неё бороться.
 """)
     elif message.text == 'Медик':
-        photo_url = 'https://github.com/ClooneySquad/test/blob/1d7155ca09993fca84671531d491ac638e7e27bf/ScriptData/SkriptMedia/Asshole.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/test2.jpg?raw=true'
+        photo_url = 'https://github.com/ClooneySquad/test/blob/91fe64016bdfb6ad626bc29e69eaf303f6866591/ScriptData/SkriptMedia/medic.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/test2.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
         bot.send_message(message.chat.id, """В Отряд 'Клуни' требуется медик \n(в настоящее время данная вакансия находится в редактировании)
 """)
