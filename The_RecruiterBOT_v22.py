@@ -68,7 +68,9 @@ def echo_all(message):
     elif message.text == 'Медик':
         photo_url = 'https://github.com/ClooneySquad/test/blob/91fe64016bdfb6ad626bc29e69eaf303f6866591/ScriptData/SkriptMedia/medic.jpg?raw=true'#'https://github.com/ClooneySquad/test/blob/main/test2.jpg?raw=true'
         bot.send_photo(message.chat.id, photo_url)
-        bot.send_message(message.chat.id, """В Отряд 'Клуни' требуется медик \n(в настоящее время данная вакансия находится в редактировании)
+        bot.send_message(message.chat.id, """В отряд «Клуни» требуются специалисты с медицинским образованием, а именно: фельдшеры и врачи-реаниматологи. 
+Если ты имеешь навыки проведения реанимационных мероприятий и инфузионной терапии, и готов применить свои знания для оказания медицинской помощи нашим бойцам, то отряд «Клуни» с радостью примет в свои боевые ряды.
+Каждый из нас приближает Победу, и врачи всегда находятся рядом с бойцами-героями, своими профессиональными действиями они помогают достичь наших общих целей в ратном труде. 
 """)
     elif message.text == 'Назад':
         main_menu(message)
