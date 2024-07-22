@@ -1,5 +1,6 @@
 import json
 import telebot
+import re
 
 bot = telebot.TeleBot('7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY')
 
@@ -42,10 +43,14 @@ def vacancies_menu(message):
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     user = message.from_user
-    if user.username not in unique_users:
-        unique_users.add(user.username)
+    username = user.username
+    if not username or re.search(r'[\U0001F600-\U0001F64F]', username):
+        username = "Нестандартное имя, вывести невозможно"
+    if user.id not in unique_users:
+        unique_users.add(user.id)
         save_users(unique_users)
-        bot.send_message(GROUP_ID, f"Пользователь {user.username} впервые подключился к боту-рекрутёру.")
+        usersval = len(unique_users)
+        bot.send_message(GROUP_ID, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
         main_menu(message)
     else:
         main_menu(message) #bot.send_message(message.chat.id, 'Вы уже зарегистрированы.')
