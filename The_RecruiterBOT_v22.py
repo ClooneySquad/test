@@ -4,7 +4,7 @@ import re
 
 bot = telebot.TeleBot('7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY')
 
-GROUP_ID = '-4221231870'
+MANAGER_ID = '6479159348'
 USERS_FILE = 'users.json'
 
 def load_users():
@@ -46,13 +46,13 @@ def send_welcome(message):
     username = user.username
     if not username or re.search(r'[\U0001F600-\U0001F64F]', username):
         username = "Нестандартное имя, вывести невозможно"
+    main_menu(message)
     if user.id not in unique_users:
         unique_users.add(user.id)
         save_users(unique_users)
         usersval = len(unique_users)
-        bot.send_message(GROUP_ID, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
-    main_menu(message)
-
+        bot.send_message(MANAGER_ID, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
+        
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     if message.text == 'Про отряд':
