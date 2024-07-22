@@ -5,7 +5,7 @@ import re
 bot = telebot.TeleBot('7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY')
 
 #MANAGER_ID = ['7093997184', '917086860', '6479159348']
-MANAGER_ID = '6479159348'
+MANAGER_ID = '7093997184'
 USERS_FILE = 'users.json'
 
 def load_users():
