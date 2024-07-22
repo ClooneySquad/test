@@ -7,6 +7,7 @@ bot = telebot.TeleBot('7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY')
 #MANAGER_ID = ['7093997184', '917086860', '6479159348']
 MANAGER_ID = '7093997184'
 USERS_FILE = 'users.json'
+LINK_FILE = 'linc.json'
 
 def load_users():
     try:
@@ -18,7 +19,14 @@ def load_users():
 def save_users(users):
     with open(USERS_FILE, 'w') as file:
         json.dump(list(users), file)
-
+        
+def append_username(username):
+    try:
+        with open(LINK_FILE, 'a') as file:
+            file.write(f"{username},")
+    except Exception as e:
+        print(f"Ошибка при записи имени пользователя: {e}")
+        
 unique_users = load_users()
 
 def main_menu(message):
@@ -51,6 +59,7 @@ def send_welcome(message):
     if user.id not in unique_users:
         unique_users.add(user.id)
         save_users(unique_users)
+        append_username(username)
         usersval = len(unique_users)
         bot.send_message(MANAGER_ID, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
         
