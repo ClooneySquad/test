@@ -51,9 +51,7 @@ def send_welcome(message):
         save_users(unique_users)
         usersval = len(unique_users)
         bot.send_message(GROUP_ID, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
-        main_menu(message)
-    else:
-        main_menu(message) #bot.send_message(message.chat.id, 'Вы уже зарегистрированы.')
+    main_menu(message)
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
