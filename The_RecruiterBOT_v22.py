@@ -4,7 +4,7 @@ import re
 
 bot = telebot.TeleBot('7358013319:AAFae4MKwf2dryKTiG9CmHybBHmAofjd_UY')
 
-MANAGER_ID = '6479159348'
+MANAGER_ID = ['7093997184', '917086860', '987654321']
 USERS_FILE = 'users.json'
 
 def load_users():
@@ -51,8 +51,8 @@ def send_welcome(message):
         unique_users.add(user.id)
         save_users(unique_users)
         usersval = len(unique_users)
-        bot.send_message(MANAGER_ID, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
-        
+        for manager_id in MANAGER_IDS:
+            bot.send_message(manager_id, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     if message.text == 'Про отряд':
