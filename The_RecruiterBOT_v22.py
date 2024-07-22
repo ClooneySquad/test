@@ -52,7 +52,12 @@ def send_welcome(message):
         save_users(unique_users)
         usersval = len(unique_users)
         for manager_id in MANAGER_IDS:
-            bot.send_message(manager_id, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
+            try:
+                bot.send_message(manager_id, f"Пользователь {username} впервые подключился к боту-рекрутёру. Всего новых пользователей, подключившихся к боту = {usersval}.")
+                print(f"Сообщение отправлено менеджеру с ID {manager_id}")
+            except Exception as e:
+                print(f"Ошибка при отправке сообщения менеджеру с ID {manager_id}: {e}")
+
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     if message.text == 'Про отряд':
